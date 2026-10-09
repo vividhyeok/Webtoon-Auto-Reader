@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Webtoon Auto Reader",
+  "version": "1.0.0",
+  "description": "네이버 웹툰을 일정한 속도로 자동 스크롤하고 다음 무료 회차로 이어서 감상합니다.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://comic.naver.com/*"],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Webtoon Auto Reader"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://comic.naver.com/webtoon/detail*"],
+      "js": [
+        "content/adapters/naver.js",
+        "content/scroll-engine.js",
+        "content/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webtoon Auto Reader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Webtoon Auto Reader</h1>
+        <p id="episode">네이버 웹툰 페이지를 열어 주세요</p>
+      </div>
+      <span id="status" class="status stopped">중지</span>
+    </header>
+
+    <section>
+      <div class="label-row"><label for="speed">스크롤 속도</label><output id="speedValue">80 px/s</output></div>
+      <input id="speed" type="range" min="10" max="600" step="10" value="80">
+    </section>
+
+    <div class="controls">
+      <button id="toggle" class="primary" type="button">▶ 재생</button>
+      <button id="stop" type="button">■ 중지</button>
+    </div>
+
+    <section class="settings">
+      <label class="switch-row" for="autoNext">
+        <span>다음 회차 자동 이동</span>
+        <input id="autoNext" type="checkbox" checked>
+      </label>
+      <div class="label-row"><label for="delay">회차 종료 후 대기</label><output id="delayValue">3초</output></div>
+      <input id="delay" type="range" min="0" max="10" step="1" value="3">
+    </section>
+    <p id="message" role="status"></p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
