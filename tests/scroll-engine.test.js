@@ -26,7 +26,16 @@ test("경과 시간 기준의 px/s 속도와 서브픽셀 누적을 유지한다
   h.engine.start();
   h.frame(0);
   for (let time = 10; time <= 1000; time += 10) h.frame(time);
-  assert.equal(h.target.scrollTop, 80);
+  assert.ok(Math.abs(h.target.scrollTop - 80) < 0.000001);
+});
+
+test("저속에서도 프레임 이동량을 정수 픽셀로 반올림하지 않는다", () => {
+  const h = harness();
+  h.engine.setSpeed(80);
+  h.engine.start();
+  h.frame(0);
+  h.frame(1000 / 60);
+  assert.ok(h.target.scrollTop > 1 && h.target.scrollTop < 2);
 });
 
 test("중복 start가 애니메이션 루프를 추가하지 않는다", () => {

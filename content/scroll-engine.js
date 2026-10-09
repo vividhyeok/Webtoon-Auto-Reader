@@ -11,7 +11,6 @@
       this.running = false;
       this.frameId = null;
       this.lastTime = null;
-      this.remainder = 0;
       this.tick = this.tick.bind(this);
       this.onVisibility = this.onVisibility.bind(this);
       this.doc.addEventListener("visibilitychange", this.onVisibility);
@@ -37,7 +36,6 @@
 
     stop() {
       this.pause();
-      this.remainder = 0;
     }
 
     schedule() {
@@ -59,13 +57,13 @@
       this.frameId = null;
       if (!this.running || this.doc.hidden) return;
       if (this.lastTime !== null) {
-        const elapsed = Math.min(100, Math.max(0, time - this.lastTime));
-        this.remainder += (this.speed * elapsed) / 1000;
-        const pixels = Math.floor(this.remainder);
-        if (pixels > 0) {
+        const elapsed = Math.min(50, Math.max(0, time - this.lastTime));
+        const distance = (this.speed * elapsed) / 1000;
+        if (distance > 0) {
           const target = this.getTarget();
-          target.scrollTop += pixels;
-          this.remainder -= pixels;
+          // Chromium keeps scrollTop as a double. Applying the exact fractional
+          // distance avoids the 1/1/2px stepping pattern visible on long images.
+          target.scrollTop += distance;
         }
       }
       this.lastTime = time;
