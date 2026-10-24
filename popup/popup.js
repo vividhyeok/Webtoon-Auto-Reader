@@ -5,8 +5,8 @@ let tabId,
   state = { supported: false },
   saveQueue = Promise.resolve();
 const fields = [
-  ["speed", "연속형 속도 (px/s)", 10, 600, 1],
-  ["distance", "한 번에 이동할 화면 비율 (%)", 10, 50, 1],
+  ["speed", "연속형 속도 (px/s)", 10, 2400, 1],
+  ["distance", "한 번에 이동할 화면 비율 (%)", 10, 300, 1],
   ["duration", "이동 애니메이션 (ms)", 100, 800, 10],
   ["readingSeconds", "이동 후 읽기 대기 (초)", 0.5, 6, 0.1],
   ["lastSeconds", "마지막 컷 감상 (초)", 0.5, 15, 0.5],

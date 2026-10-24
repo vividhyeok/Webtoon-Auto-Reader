@@ -174,3 +174,22 @@ test("이동 불가능한 대상은 안전하게 중단한다", () => {
   for (let t = 50; t <= 2100 && h.engine.running; t += 50) h.frame(t);
   assert.equal(h.engine.running, false);
 });
+
+test("화면 세 개 이동과 높은 연속 속도를 허용하면서 본문 경계를 지킨다", () => {
+  const h = harness();
+  h.engine.win.innerHeight = 800;
+  h.engine.getLimit = () => 2000;
+  h.engine.configure({ mode: "step", distance: 300, duration: 100 });
+  h.engine.start();
+  h.frame(0);
+  h.frame(50);
+  h.frame(100);
+  assert.equal(h.target.scrollTop, 2000);
+  h.engine.stop();
+  h.target.scrollTop = 0;
+  h.engine.configure({ mode: "continuous", speed: 2400 });
+  h.engine.start();
+  h.frame(200);
+  h.frame(250);
+  assert.equal(h.target.scrollTop, 120);
+});

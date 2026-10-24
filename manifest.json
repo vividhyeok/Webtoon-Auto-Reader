@@ -1,10 +1,15 @@
 {
   "manifest_version": 3,
   "name": "Webtoon Auto Reader",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "읽기 리듬과 장면 수집함으로 편안하게 감상하는 네이버 웹툰 자동 리더",
-  "permissions": ["storage", "activeTab"],
-  "host_permissions": ["https://comic.naver.com/*"],
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://comic.naver.com/*"
+  ],
   "background": {
     "service_worker": "background/service-worker.js"
   },
@@ -14,7 +19,9 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://comic.naver.com/webtoon/detail*"],
+      "matches": [
+        "https://comic.naver.com/webtoon/detail*"
+      ],
       "js": [
         "shared-settings.js",
         "content/adapters/naver.js",

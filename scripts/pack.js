@@ -14,7 +14,7 @@ const files = [
   "README.md",
 ];
 const quote = (s) => "'" + s.replaceAll("'", "''") + "'";
-const output = path.join(root, "dist", "webtoon-auto-reader-2.0.0.zip");
+const output = path.join(root, "dist", "webtoon-auto-reader-2.0.1.zip");
 cp.execFileSync(
   "powershell",
   [

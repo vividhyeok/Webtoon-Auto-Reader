@@ -62,7 +62,7 @@
       if (this.running) this.transition("MOVING");
     }
     setSpeed(v) {
-      this.speed = Math.max(10, Math.min(600, Number(v) || 80));
+      this.speed = Math.max(10, Math.min(2400, Number(v) || 80));
     }
     remember(y) {
       if (this.history.at(-1) !== y) {

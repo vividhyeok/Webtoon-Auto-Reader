@@ -21,3 +21,15 @@ test("템포와 프리셋은 읽기 간격을 조절한다", () => {
   assert.equal(S.preset("focus").mode, "hybrid");
   assert.equal(S.tempo(S.preset("meal"), 70).preset, "custom");
 });
+
+test("넓어진 이동 거리와 연속 속도를 저장하고 최대값을 제한한다", () => {
+  const settings = S.normalize({ version: 2, distance: 300, speed: 2400 });
+  assert.equal(settings.distance, 300);
+  assert.equal(settings.speed, 2400);
+  assert.equal(S.normalize({ distance: 999, speed: 9999 }).distance, 300);
+  assert.equal(S.normalize({ distance: 999, speed: 9999 }).speed, 2400);
+  assert.equal(S.tempo({ ...S.defaults, mode: "step" }, 100).distance, 300);
+  assert.equal(S.tempo({ ...S.defaults, mode: "hybrid" }, 100).distance, 150);
+  assert.equal(S.tempo({ ...S.defaults, mode: "continuous" }, 100).speed, 2400);
+  assert.equal(S.tempo(S.defaults, 50).distance, 25);
+});

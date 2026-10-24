@@ -22,9 +22,9 @@
     if (!raw.version && Object.hasOwn(raw, "speed")) s.mode = "continuous";
     for (const [key, min, max] of [
       ["tempo", 0, 100],
-      ["speed", 10, 600],
+      ["speed", 10, 2400],
       ["delaySeconds", 0, 10],
-      ["distance", 10, 50],
+      ["distance", 10, 300],
       ["duration", 100, 800],
       ["readingSeconds", 0.5, 6],
       ["resumeSeconds", 1, 30],
@@ -51,8 +51,18 @@
       version: 2,
       tempo: t,
       preset: "custom",
-      speed: Math.round(10 + 590 * x),
-      distance: settings.mode === "hybrid" ? 10 + 10 * x : 20 + 10 * x,
+      // Keep the comfortable lower half; the upper half opens up longer travel.
+      speed: Math.round(
+        x <= 0.5 ? 10 + 140 * x : 80 + 2320 * ((x - 0.5) * 2) ** 2,
+      ),
+      distance:
+        x <= 0.5
+          ? settings.mode === "hybrid"
+            ? 10 + 10 * x
+            : 20 + 10 * x
+          : settings.mode === "hybrid"
+            ? 15 + 135 * ((x - 0.5) * 2) ** 2
+            : 25 + 275 * ((x - 0.5) * 2) ** 2,
       duration: Math.round(400 - 240 * x),
       readingSeconds: settings.mode === "hybrid" ? 1.5 - x : 5 - 4 * x,
     });
