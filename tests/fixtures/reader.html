@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Reader DOM integration</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      #sectionContWide {
+        padding-top: 20px;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: 2200px;
+      }
+      #comments {
+        height: 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sectionContWide">
+      <img
+        id="content_image_0"
+        alt="fixture"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='2200'%3E%3Crect width='500' height='2200' fill='%23ddd'/%3E%3C/svg%3E"
+      />
+    </div>
+    <div id="comments">본문 밖</div>
+    <pre id="results">RUNNING</pre>
+    <script src="../../shared-settings.js"></script>
+    <script src="../../content/adapters/naver.js"></script>
+    <script src="../../content/scroll-engine.js"></script>
+    <script src="../../scene-db.js"></script><script src="browser-harness.js"></script>
+  </body>
+</html>

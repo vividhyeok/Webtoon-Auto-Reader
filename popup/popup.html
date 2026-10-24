@@ -1,41 +1,64 @@
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Webtoon Auto Reader</title>
-  <link rel="stylesheet" href="popup.css">
-</head>
-<body>
-  <main>
-    <header>
-      <div>
-        <h1>Webtoon Auto Reader</h1>
-        <p id="episode">네이버 웹툰 페이지를 열어 주세요</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Webtoon Auto Reader</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>Webtoon Auto Reader</h1>
+          <p id="episode">네이버 웹툰 회차를 열어 주세요</p>
+        </div>
+        <span id="status" class="status">중지</span>
+      </header>
+      <div class="controls">
+        <button id="toggle" class="primary">▶ 재생</button
+        ><button id="stop">■ 중지</button>
       </div>
-      <span id="status" class="status stopped">중지</span>
-    </header>
-
-    <section>
-      <div class="label-row"><label for="speed">스크롤 속도</label><output id="speedValue">80 px/s</output></div>
-      <input id="speed" type="range" min="10" max="600" step="10" value="80">
-    </section>
-
-    <div class="controls">
-      <button id="toggle" class="primary" type="button">▶ 재생</button>
-      <button id="stop" type="button">■ 중지</button>
-    </div>
-
-    <section class="settings">
-      <label class="switch-row" for="autoNext">
-        <span>다음 회차 자동 이동</span>
-        <input id="autoNext" type="checkbox" checked>
-      </label>
-      <div class="label-row"><label for="delay">회차 종료 후 대기</label><output id="delayValue">3초</output></div>
-      <input id="delay" type="range" min="0" max="10" step="1" value="3">
-    </section>
-    <p id="message" role="status"></p>
-  </main>
-  <script src="popup.js"></script>
-</body>
+      <section class="settings">
+        <label
+          >스크롤 모드<select id="mode">
+            <option value="step">읽기형 · 추천</option>
+            <option value="hybrid">혼합형</option>
+            <option value="continuous">연속형</option>
+          </select></label
+        ><label
+          >감상 상황<select id="preset">
+            <option value="custom">사용자 지정</option>
+            <option value="meal">식사</option>
+            <option value="gaming">게임 병행</option>
+            <option value="focus">집중 감상</option>
+          </select></label
+        >
+        <label
+          >감상 템포 <output id="tempoValue"></output
+          ><input id="tempo" type="range" min="0" max="100" /><small
+            >느리게 ← → 빠르게 · 거리와 읽기 시간을 함께 조절합니다.</small
+          ></label
+        ><label class="switch-row"
+          >다음 무료 회차 자동 재생<input id="autoNext" type="checkbox"
+        /></label>
+      </section>
+      <div class="controls">
+        <button id="rewind">↶ 이전 1회</button
+        ><button id="rewind3">↶ 이전 3회</button
+        ><button id="bookmark">☆ 장면 저장</button
+        ><button id="capture">▣ 저장 + 화면 캡처</button>
+      </div>
+      <button id="gallery">장면 수집함 열기</button>
+      <details>
+        <summary>고급 설정</summary>
+        <section id="advanced" class="settings"></section>
+        <button id="reset">기본값 초기화</button>
+      </details>
+      <p id="message" role="status" aria-live="polite"></p>
+      <p>페이지 단축키: Alt+P 재생 · Alt+Z 되돌리기 · Alt+B 저장</p>
+    </main>
+    <script src="../shared-settings.js"></script>
+    <script src="popup.js"></script>
+  </body>
 </html>

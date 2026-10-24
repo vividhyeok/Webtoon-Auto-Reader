@@ -1,0 +1,66 @@
+body {
+  width: auto;
+  max-height: none;
+}
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 32px;
+}
+#search {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--text);
+  margin: 10px 0 20px;
+}
+#cards {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+article {
+  background: var(--panel);
+  padding: 16px;
+  border-radius: 14px;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+article img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  background: var(--bg);
+  border-radius: 8px;
+}
+article h2 {
+  font-size: 16px;
+  margin: 0;
+}
+article textarea,
+article input {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+}
+article button {
+  padding: 10px;
+}
+.placeholder {
+  height: 130px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: var(--bg);
+  border-radius: 8px;
+}
+article label {
+  display: grid;
+  gap: 5px;
+}

@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "Webtoon Auto Reader",
-  "version": "1.0.0",
-  "description": "네이버 웹툰을 일정한 속도로 자동 스크롤하고 다음 무료 회차로 이어서 감상합니다.",
-  "permissions": ["storage", "tabs"],
+  "version": "2.0.0",
+  "description": "읽기 리듬과 장면 수집함으로 편안하게 감상하는 네이버 웹툰 자동 리더",
+  "permissions": ["storage", "activeTab"],
   "host_permissions": ["https://comic.naver.com/*"],
   "background": {
     "service_worker": "background/service-worker.js"
@@ -16,11 +16,32 @@
     {
       "matches": ["https://comic.naver.com/webtoon/detail*"],
       "js": [
+        "shared-settings.js",
         "content/adapters/naver.js",
         "content/scroll-engine.js",
         "content/content.js"
       ],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "commands": {
+    "toggle-reading": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "재생 / 일시정지"
+    },
+    "save-scene": {
+      "suggested_key": {
+        "default": "Alt+Shift+B"
+      },
+      "description": "현재 장면 위치 저장"
+    },
+    "rewind-reading": {
+      "suggested_key": {
+        "default": "Alt+Shift+Z"
+      },
+      "description": "이전 자동 스크롤 되돌리기"
+    }
+  }
 }

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>장면 수집함</title>
+    <link rel="stylesheet" href="../popup/popup.css" />
+    <link rel="stylesheet" href="gallery.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>장면 수집함</h1>
+          <p>이 기기에만 보관되는 나만의 읽기 위치와 화면</p>
+        </div>
+      </header>
+      <label for="series">작품별 모아 보기</label
+      ><select id="series">
+        <option value="">모든 작품</option></select
+      ><label for="search">작품 · 태그 · 메모 검색</label
+      ><input id="search" type="search" placeholder="장면을 찾아보세요" />
+      <p id="message" role="status" aria-live="polite"></p>
+      <div id="cards"></div>
+    </main>
+    <script src="../scene-db.js"></script>
+    <script src="gallery.js"></script>
+  </body>
+</html>
